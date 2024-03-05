@@ -1,13 +1,16 @@
 import ReactDOM from 'react-dom/client'
+import Button from './components/Button'
 
-const classNameValue = 'button'
+function Hello() {
+  return <div>Cześć</div>
+}
 
 const element = (
   <>
     <div>
-      <button className={classNameValue}>Kliknij mnie</button>
+      <Button />
     </div>
-    <div>Cześć</div>
+    <Hello />
   </>
 )
 
