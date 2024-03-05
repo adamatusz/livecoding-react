@@ -1,11 +1,9 @@
 import ReactDOM from 'react-dom/client'
-import Button from './components/Button'
+import App from './App'
+import { StrictMode } from 'react'
 
-const element = (
-  <div>
-    <Button text='Click me' />
-    <Button />
-  </div>
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
 )
-
-ReactDOM.createRoot(document.getElementById('root')).render(element)
