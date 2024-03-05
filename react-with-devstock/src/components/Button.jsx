@@ -1,4 +1,4 @@
-export default function Button() {
-  const classNameValue = 'button'
-  return <button className={classNameValue}>Kliknij mnie</button>
+export default function Button({ text }) {
+  const defaultValue = text ? text : 'Witam'
+  return <button>{defaultValue}</button>
 }

@@ -1,17 +1,11 @@
 import ReactDOM from 'react-dom/client'
 import Button from './components/Button'
 
-function Hello() {
-  return <div>Cześć</div>
-}
-
 const element = (
-  <>
-    <div>
-      <Button />
-    </div>
-    <Hello />
-  </>
+  <div>
+    <Button text='Click me' />
+    <Button />
+  </div>
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(element)
