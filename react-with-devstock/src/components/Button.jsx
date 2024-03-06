@@ -1,4 +1,4 @@
-export default function Button({ text }) {
-  const defaultValue = text ? text : 'Witam'
-  return <button>{defaultValue}</button>
+export default function Button({ children, onClick }) {
+  const defaultValue = children ? children : 'Witam'
+  return <button onClick={onClick}>{defaultValue}</button>
 }
