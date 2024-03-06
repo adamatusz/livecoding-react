@@ -1,22 +1,27 @@
-import BoldText from './components/BoldText'
-import Wrapper from './components/Wrapper'
+import UserCard from './components/UserCard'
 
-function CustomComponent({ text = 'Dołącz do Devstock!' }) {
-  return <h2 style={{ color: 'blue', padding: '20px' }}>{text}</h2>
+const user = {
+  name: 'Jan Kowalski',
+  nickname: 'jankowalski',
+  email: 'jan.kowalski@example.com',
+  phone: '123-456-789',
+}
+
+const secondUser = {
+  name: 'Anna Nowak',
+  nickname: 'annanowak',
+  email: 'anna.nowak@example.com',
 }
 
 function App() {
+  const isLogged = false
+
   return (
-    <div>
-      <Wrapper>
-        <BoldText>
-          <CustomComponent />
-        </BoldText>
-        <BoldText>
-          <CustomComponent text='Stawiamy na zespół!' />
-        </BoldText>
-      </Wrapper>
-    </div>
+    <>
+      <UserCard user={user} isLogged />
+      <hr />
+      <UserCard user={secondUser} isLogged={isLogged} />
+    </>
   )
 }
 
