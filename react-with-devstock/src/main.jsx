@@ -1,14 +1,12 @@
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
 
-const classNameValue = 'button'
+const name = "Bartek";
+const nameOfTheClass = "hidden";
 
-const element = (
-  <>
-    <div>
-      <button className={classNameValue}>Kliknij mnie</button>
-    </div>
-    <div>Cześć</div>
-  </>
-)
+const secondElement = <div className={nameOfTheClass}>String</div>;
+console.log(secondElement);
 
-ReactDOM.createRoot(document.getElementById('root')).render(element)
+ReactDOM.createRoot(document.getElementById("root")).render(secondElement);
