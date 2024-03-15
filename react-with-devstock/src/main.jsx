@@ -1,17 +1,12 @@
-import ReactDOM from 'react-dom/client'
-import Button from './components/Button'
-
-function Hello() {
-  return <div>Cześć</div>
-}
+import ReactDOM from "react-dom/client";
+import Wrapper from "./components/Wrapper";
 
 const element = (
   <>
     <div>
-      <Button />
+      <Wrapper />
     </div>
-    <Hello />
   </>
-)
+);
 
-ReactDOM.createRoot(document.getElementById('root')).render(element)
+ReactDOM.createRoot(document.getElementById("root")).render(element);
