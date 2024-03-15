@@ -1,4 +1,13 @@
-export default function Button({ text }) {
-  const defaultValue = text ? text : 'Witam'
-  return <button>{defaultValue}</button>
+export default function Button({
+  color = "green",
+  text = "Accept",
+  clickHandler = () => console.log("a"),
+  user,
+}) {
+  console.log(user);
+  return (
+    <button onClick={clickHandler} className={color}>
+      {text}
+    </button>
+  );
 }
