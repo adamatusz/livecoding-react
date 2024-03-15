@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <div id="root"></div>
+    <script>
+      const dogs = [
+        { id: 1, name: "Burek", breed: "Pitbull" },
+        { id: 2, name: "Kazik", breed: "Labrador" },
+        { id: 3, name: "Suzi", breed: "Husky" },
+        { id: 4, name: "Marlo", breed: "Husky" },
+      ];
+
+      const Dog = (id, name, breed) => {
+        return React.createElement("li", { key: id, breed }, name);
+      };
+
+      const root = document.getElementById("root");
+
+      const dogsReactElements = dogs.map(({ id, name, breed }) =>
+        Dog(id, name, breed)
+      );
+
+      const dogList = React.createElement("ul", {}, dogsReactElements);
+
+      ReactDOM.createRoot(root).render(dogList);
+    </script>
+  </body>
+</html>
