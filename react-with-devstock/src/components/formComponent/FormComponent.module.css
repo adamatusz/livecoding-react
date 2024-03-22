@@ -19,7 +19,7 @@ label {
   font-weight: 600;
 }
 
-.form-elements {
+.formElements {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -27,19 +27,9 @@ label {
   margin-bottom: 16px;
 }
 
-.form-element {
+.formElement {
   display: flex;
   width: 100%;
   flex-direction: column;
   margin-top: 4px;
-}
-
-button {
-  background-color: mediumseagreen;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }

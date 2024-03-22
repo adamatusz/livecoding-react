@@ -2,7 +2,8 @@ import { useForm, useFieldArray } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import './FormComponent.css'
+import { Button } from '../index'
+import style from './FormComponent.module.css'
 
 const ingredientSchema = z.object({
   ingredientName: z.string(),
@@ -56,10 +57,10 @@ function FormComponent({ setRecipe, recipesAmount }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='form-elements'>
+      <div className={style.formElements}>
         <div>
           <label htmlFor='title'>Tytuł</label>
-          <div className='form-element'>
+          <div className={style.formElement}>
             <input
               {...register('title')}
               type='text'
@@ -71,7 +72,7 @@ function FormComponent({ setRecipe, recipesAmount }) {
         </div>
         <div>
           <label htmlFor='description'>Opis</label>
-          <div className='form-element'>
+          <div className={style.formElement}>
             <textarea
               {...register('description')}
               id='description'
@@ -83,18 +84,14 @@ function FormComponent({ setRecipe, recipesAmount }) {
         </div>
       </div>
       <div>
-        <button
-          type='button'
-          className='ingredientButton'
-          onClick={() => append(initialIgredient)}
-        >
+        <Button type='button' onClick={() => append(initialIgredient)}>
           Dodaj składnik
-        </button>
-        <div className='form-elements'>
+        </Button>
+        <div className={style.formElements}>
           {fields.map(({ id }, index) => {
             setValue(`ingredients.${index}.id`, id) //Dodajemy id do listy składników za pomocą setValue
             return (
-              <div key={id} className='form-element'>
+              <div key={id} className={style.formElement}>
                 <label htmlFor='igredient'>Nazwa</label>
                 <input
                   {...register(`ingredients.${index}.ingredientName`)}
@@ -112,9 +109,9 @@ function FormComponent({ setRecipe, recipesAmount }) {
           })}
         </div>
       </div>
-      <button type='submit' disabled={isSubmitting}>
+      <Button type='submit' disabled={isSubmitting}>
         Wyślij
-      </button>
+      </Button>
     </form>
   )
 }

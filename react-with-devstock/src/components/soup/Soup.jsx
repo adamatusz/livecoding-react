@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import './Soup.css'
+import style from './Soup.module.css'
 import { Button } from '../index'
 
 function Soup({ hideButtons, recipe }) {
@@ -16,11 +16,11 @@ function Soup({ hideButtons, recipe }) {
   }
 
   return (
-    <div className='recipe-card'>
+    <div className={style.recipeCard}>
       <h2>{recipe.title}</h2>
       <p>{recipe.description}</p>
       {!hideButtons && (
-        <div className='buttons'>
+        <div className={style.buttons}>
           <Button onClick={handleClick}>
             {showIngredients ? 'Ukryj' : 'Pokaż'} listę składników
           </Button>
