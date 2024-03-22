@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import Soup from './components/Soup'
-import Button from './components/Button'
-import FormComponent from './components/FormComponent'
+import { Soup, Button, FormComponent } from './components'
 
 const cucumberSoup = {
   id: 1,

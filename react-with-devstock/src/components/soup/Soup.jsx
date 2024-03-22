@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import './Soup.css'
-import Button from './Button'
+import { Button } from '../index'
 
 function Soup({ hideButtons, recipe }) {
   const [counter, setCounter] = useState(1)
