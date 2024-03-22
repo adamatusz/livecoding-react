@@ -1,4 +1,6 @@
-import { useState, Fragment } from 'react'
+import { useState } from 'react'
+
+import './Soup.css'
 import Button from './Button'
 
 function Soup({ hideButtons, recipe }) {
@@ -11,7 +13,6 @@ function Soup({ hideButtons, recipe }) {
 
   function handleClick() {
     setShowIngredients((prev) => !prev)
-    // setShowIngredients(!showIngredients);
   }
 
   return (
@@ -19,12 +20,12 @@ function Soup({ hideButtons, recipe }) {
       <h2>{recipe.title}</h2>
       <p>{recipe.description}</p>
       {!hideButtons && (
-        <Fragment>
+        <div className='buttons'>
           <Button onClick={handleClick}>
             {showIngredients ? 'Ukryj' : 'Pokaż'} listę składników
           </Button>
           <Button onClick={increasePoritonsCount}>Increase</Button>
-        </Fragment>
+        </div>
       )}
       {recipe.ingredients && (
         <>

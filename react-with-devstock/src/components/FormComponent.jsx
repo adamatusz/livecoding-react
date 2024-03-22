@@ -2,6 +2,8 @@ import { useForm, useFieldArray } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
+import './FormComponent.css'
+
 const ingredientSchema = z.object({
   ingredientName: z.string(),
   ingredientsAmount: z.string(),
@@ -54,57 +56,61 @@ function FormComponent({ setRecipe, recipesAmount }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
+      <div className='form-elements'>
         <div>
           <label htmlFor='title'>Tytuł</label>
+          <div className='form-element'>
+            <input
+              {...register('title')}
+              type='text'
+              id='title'
+              placeholder='Tytuł'
+            />
+            {errors?.title && <p>{errors.title.message}</p>}
+          </div>
         </div>
-        <input
-          {...register('title')}
-          type='text'
-          id='title'
-          placeholder='Tytuł'
-        />
-        {errors?.title && <p>{errors.title.message}</p>}
-      </div>
-      <div>
         <div>
           <label htmlFor='description'>Opis</label>
+          <div className='form-element'>
+            <textarea
+              {...register('description')}
+              id='description'
+              placeholder='Opis'
+              rows={4}
+            />
+            {errors?.description && <p>{errors.description.message}</p>}
+          </div>
         </div>
-        <textarea
-          {...register('description')}
-          id='description'
-          placeholder='Opis'
-          rows={4}
-        />
-        {errors?.description && <p>{errors.description.message}</p>}
       </div>
       <div>
-        <button type='button' onClick={() => append(initialIgredient)}>
-          Dodaj składnk
+        <button
+          type='button'
+          className='ingredientButton'
+          onClick={() => append(initialIgredient)}
+        >
+          Dodaj składnik
         </button>
-        {fields.map(({ id }, index) => {
-          setValue(`ingredients.${index}.id`, id) //Dodajemy id do listy składników za pomocą setValue
-          return (
-            <div key={id}>
-              <div>
+        <div className='form-elements'>
+          {fields.map(({ id }, index) => {
+            setValue(`ingredients.${index}.id`, id) //Dodajemy id do listy składników za pomocą setValue
+            return (
+              <div key={id} className='form-element'>
                 <label htmlFor='igredient'>Nazwa</label>
-              </div>
-              <input
-                {...register(`ingredients.${index}.ingredientName`)}
-                type='text'
-                id='igredient'
-              />
-              <div>
+                <input
+                  {...register(`ingredients.${index}.ingredientName`)}
+                  type='text'
+                  id='igredient'
+                />
                 <label htmlFor='amount'>Ilość</label>
+                <input
+                  {...register(`ingredients.${index}.ingredientsAmount`)}
+                  type='number'
+                  id='amount'
+                />
               </div>
-              <input
-                {...register(`ingredients.${index}.ingredientsAmount`)}
-                type='number'
-                id='amount'
-              />
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
       <button type='submit' disabled={isSubmitting}>
         Wyślij
