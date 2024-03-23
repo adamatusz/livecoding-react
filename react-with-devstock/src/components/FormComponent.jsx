@@ -2,8 +2,6 @@ import { useForm, useFieldArray } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import './FormComponent.css'
-
 const ingredientSchema = z.object({
   ingredientName: z.string(),
   ingredientsAmount: z.string(),
@@ -56,10 +54,10 @@ function FormComponent({ setRecipe, recipesAmount }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='form-elements'>
+      <div>
         <div>
           <label htmlFor='title'>Tytuł</label>
-          <div className='form-element'>
+          <div>
             <input
               {...register('title')}
               type='text'
@@ -71,7 +69,7 @@ function FormComponent({ setRecipe, recipesAmount }) {
         </div>
         <div>
           <label htmlFor='description'>Opis</label>
-          <div className='form-element'>
+          <div>
             <textarea
               {...register('description')}
               id='description'
@@ -83,18 +81,14 @@ function FormComponent({ setRecipe, recipesAmount }) {
         </div>
       </div>
       <div>
-        <button
-          type='button'
-          className='ingredientButton'
-          onClick={() => append(initialIgredient)}
-        >
+        <button type='button' onClick={() => append(initialIgredient)}>
           Dodaj składnik
         </button>
-        <div className='form-elements'>
+        <div>
           {fields.map(({ id }, index) => {
             setValue(`ingredients.${index}.id`, id) //Dodajemy id do listy składników za pomocą setValue
             return (
-              <div key={id} className='form-element'>
+              <div key={id}>
                 <label htmlFor='igredient'>Nazwa</label>
                 <input
                   {...register(`ingredients.${index}.ingredientName`)}

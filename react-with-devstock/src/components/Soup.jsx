@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
-import './Soup.css'
-import { Button } from '../index'
+import { Button } from './index'
 
 function Soup({ hideButtons, recipe }) {
   const [counter, setCounter] = useState(1)
@@ -16,11 +15,11 @@ function Soup({ hideButtons, recipe }) {
   }
 
   return (
-    <div className='recipe-card'>
+    <div>
       <h2>{recipe.title}</h2>
       <p>{recipe.description}</p>
       {!hideButtons && (
-        <div className='buttons'>
+        <div>
           <Button onClick={handleClick}>
             {showIngredients ? 'Ukryj' : 'Pokaż'} listę składników
           </Button>
