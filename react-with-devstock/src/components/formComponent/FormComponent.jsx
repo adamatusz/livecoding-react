@@ -3,7 +3,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import { Button } from '../index'
-import style from './FormComponent.module.css'
+import {
+  StyledForm,
+  StyledFormElement,
+  StyledFormElements,
+} from './FormStyledComponents'
 
 const ingredientSchema = z.object({
   ingredientName: z.string(),
@@ -56,11 +60,11 @@ function FormComponent({ setRecipe, recipesAmount }) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={style.formElements}>
+    <StyledForm onSubmit={handleSubmit(onSubmit)}>
+      <StyledFormElements>
         <div>
           <label htmlFor='title'>Tytuł</label>
-          <div className={style.formElement}>
+          <StyledFormElement>
             <input
               {...register('title')}
               type='text'
@@ -68,11 +72,11 @@ function FormComponent({ setRecipe, recipesAmount }) {
               placeholder='Tytuł'
             />
             {errors?.title && <p>{errors.title.message}</p>}
-          </div>
+          </StyledFormElement>
         </div>
         <div>
           <label htmlFor='description'>Opis</label>
-          <div className={style.formElement}>
+          <StyledFormElement>
             <textarea
               {...register('description')}
               id='description'
@@ -80,18 +84,18 @@ function FormComponent({ setRecipe, recipesAmount }) {
               rows={4}
             />
             {errors?.description && <p>{errors.description.message}</p>}
-          </div>
+          </StyledFormElement>
         </div>
-      </div>
+      </StyledFormElements>
       <div>
-        <Button type='button' onClick={() => append(initialIgredient)}>
+        <Button type='button' onClick={() => append(initialIgredient)} $primary>
           Dodaj składnik
         </Button>
-        <div className={style.formElements}>
+        <StyledFormElements>
           {fields.map(({ id }, index) => {
             setValue(`ingredients.${index}.id`, id) //Dodajemy id do listy składników za pomocą setValue
             return (
-              <div key={id} className={style.formElement}>
+              <StyledFormElement key={id}>
                 <label htmlFor='igredient'>Nazwa</label>
                 <input
                   {...register(`ingredients.${index}.ingredientName`)}
@@ -104,15 +108,15 @@ function FormComponent({ setRecipe, recipesAmount }) {
                   type='number'
                   id='amount'
                 />
-              </div>
+              </StyledFormElement>
             )
           })}
-        </div>
+        </StyledFormElements>
       </div>
-      <Button type='submit' disabled={isSubmitting}>
+      <Button type='submit' disabled={isSubmitting} $primary>
         Wyślij
       </Button>
-    </form>
+    </StyledForm>
   )
 }
 
