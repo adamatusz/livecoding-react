@@ -1,7 +1,7 @@
 import { useState, Fragment } from 'react'
 import Button from './Button'
 
-function Soup({ hideButtons }) {
+function Soup({ hideButtons, title, description, recipe }) {
   const [counter, setCounter] = useState(1)
   const [showIngredients, setShowIngredients] = useState(false)
 
@@ -18,12 +18,12 @@ function Soup({ hideButtons }) {
 
   return (
     <div className='recipe-card'>
-      <h2>Zupa Ogórkowa</h2>
+      <h2>{title}</h2>
       <p>
-        Zupa ogórkowa jest jednym z najbardziej charakterystycznych dań kuchni
-        polskiej.
+        {description}
       </p>
-      {!hideButtons && (
+      {recipe && (<>
+              {!hideButtons && (
         <Fragment>
           <Button onClick={handleClick}>
             {showIngredients ? 'Ukryj' : 'Pokaż'} listę składników
@@ -35,11 +35,13 @@ function Soup({ hideButtons }) {
       <p>Portions: {counter}</p>
       {showIngredients && (
         <ul>
-          <li>{1 * counter} litr bulionu drobiowego lub warzywnego</li>
-          <li>{5 * counter} dużych kiszonych ogórków</li>
-          <li>{1 * counter} duża marchewka</li>
+          <li>{1 * counter} {recipe.one}</li>
+          <li>{5 * counter} {recipe.two}</li>
+          <li>{1 * counter} {recipe.three}</li>
         </ul>
       )}
+      </>)}
+
     </div>
   )
 }
