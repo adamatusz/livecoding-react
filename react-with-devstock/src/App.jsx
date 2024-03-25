@@ -1,32 +1,54 @@
-import { useState } from 'react'
-import Soup from './components/Soup'
-import Button from './components/Button'
-import FormComponent from './components/FormComponent'
-
+import { useState } from "react";
+import Soup from "./components/Soup";
+import Button from "./components/Button";
+import FormComponent from "./components/FormComponent";
 
 const defaultSoup = {
-  title: 'Zupa Ogórkowa',
-  description: 'Zupa ogórkowa jest jednym z najbardziej charakterystycznych dań kuchni polskiej.',
-  ingredients: {
-    one: 'litr bulionu drobiowego lub warzywnego',
-    two: 'dużych kiszonych ogórków',
-    three: 'duża marchewka'
-  }
-}
+  id: 1,
+  title: "Zupa Ogórkowa",
+  description:
+    "Zupa ogórkowa jest jednym z najbardziej charakterystycznych dań kuchni polskiej.",
+  ingredients: [
+    {
+      id: 1,
+      amount: 1,
+      name: "litr bulionu drobiowego lub warzywnego",
+    },
+    {
+      id: 2,
+      amount: 5,
+      name: "dużych kiszonych ogórków",
+    },
+    { id: 3, amount: 1, name: "duża marchewka" },
+  ],
+};
 
 function App() {
-  const [hideButtons, setHideButtons] = useState(false)
-  const [soup, setSoup] = useState(null)
+  const [hideButtons, setHideButtons] = useState(false);
+  const [recipes, setRecipes] = useState([defaultSoup]);
+
+  const addRecipe = (soup) => {
+    setRecipes([...recipes, soup]);
+  };
+
   return (
     <>
       <Button onClick={() => setHideButtons((prev) => !prev)}>
-        {hideButtons ? 'Pokaż' : 'Ukryj'} przyciski akcji
+        {hideButtons ? "Pokaż" : "Ukryj"} przyciski akcji
       </Button>
-      <Soup hideButtons={hideButtons} title={defaultSoup.title} description={defaultSoup.description} recipe={defaultSoup.ingredients} />
-      {soup && <Soup hideButtons={hideButtons} title={soup.title} description={soup.description} recipe={soup.ingredients} />}
-      <FormComponent setSoup={setSoup} />
+      {recipes.map(({ id, title, description, ingredients }) => (
+        <Soup
+          key={id}
+          hideButtons={hideButtons}
+          title={title}
+          description={description}
+          ingredients={ingredients}
+        />
+      ))}
+
+      <FormComponent addRecipe={addRecipe} recipesAmount={recipes.length} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
