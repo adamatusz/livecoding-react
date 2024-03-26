@@ -34,7 +34,7 @@ function App() {
   return (
     <>
       <button>Test</button>
-      <Button onClick={() => setHideButtons((prev) => !prev)}>
+      <Button color="green" onClick={() => setHideButtons((prev) => !prev)}>
         {hideButtons ? "Pokaż" : "Ukryj"} przyciski akcji
       </Button>
       {recipes.map(({ id, title, description, ingredients }) => (
