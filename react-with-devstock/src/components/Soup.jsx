@@ -25,7 +25,7 @@ function Soup({ hideButtons, title, description, ingredients }) {
         <>
           {!hideButtons && (
             <Fragment>
-              <Button onClick={handleClick}>
+              <Button onClick={handleClick} color="blue">
                 {showIngredients ? "Ukryj" : "Pokaż"} listę składników
               </Button>
               <Button onClick={increasePoritonsCount}>Increase</Button>

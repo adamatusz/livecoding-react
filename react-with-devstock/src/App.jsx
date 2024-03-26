@@ -2,6 +2,9 @@ import { useState } from "react";
 import Soup from "./components/Soup";
 import Button from "./components/Button/Button";
 import FormComponent from "./components/FormComponent";
+import Button2 from "./components/Button2";
+// import { Rating } from "@mui/material";
+import BasicRating from "./components/BasicRating";
 
 const defaultSoup = {
   id: 1,
@@ -33,8 +36,9 @@ function App() {
 
   return (
     <>
-      <button>Test</button>
-      <Button color="green" onClick={() => setHideButtons((prev) => !prev)}>
+      {/* <Button2>Test</Button2> */}
+      <BasicRating stars={5} />
+      {/* <Button color="green" onClick={() => setHideButtons((prev) => !prev)}>
         {hideButtons ? "Pokaż" : "Ukryj"} przyciski akcji
       </Button>
       {recipes.map(({ id, title, description, ingredients }) => (
@@ -47,7 +51,7 @@ function App() {
         />
       ))}
 
-      <FormComponent addRecipe={addRecipe} recipesAmount={recipes.length} />
+      <FormComponent addRecipe={addRecipe} recipesAmount={recipes.length} /> */}
     </>
   );
 }

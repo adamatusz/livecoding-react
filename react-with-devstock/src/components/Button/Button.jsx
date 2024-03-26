@@ -1,10 +1,29 @@
-import styles from "./styles.module.css";
+import styled, { css } from "styled-components";
 
-export default function Button({ children, onClick, color = "yellow" }) {
+const StyledButton = styled.button`
+  padding: 40px;
+  color: orange;
+  ${(props) =>
+    props.color &&
+    css`
+      color: ${props.color};
+    `}
+`;
+
+const StyledButtonWrapper = styled(StyledButton)`
+  padding: 10px;
+`;
+
+export default function Button({ children, onClick, color }) {
   const defaultValue = children ? children : "Witam";
   return (
-    <button style={{ color, padding: "20px" }} onClick={onClick}>
-      {defaultValue}
-    </button>
+    <>
+      <StyledButton color={color} onClick={onClick}>
+        {defaultValue}
+      </StyledButton>
+      <StyledButtonWrapper color={color} onClick={onClick}>
+        COPY {defaultValue}
+      </StyledButtonWrapper>
+    </>
   );
 }
