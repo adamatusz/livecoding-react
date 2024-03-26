@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Soup from "./components/Soup";
-import Button from "./components/Button";
+import Button from "./components/Button/Button";
 import FormComponent from "./components/FormComponent";
 
 const defaultSoup = {
@@ -33,6 +33,7 @@ function App() {
 
   return (
     <>
+      <button>Test</button>
       <Button onClick={() => setHideButtons((prev) => !prev)}>
         {hideButtons ? "Pokaż" : "Ukryj"} przyciski akcji
       </Button>

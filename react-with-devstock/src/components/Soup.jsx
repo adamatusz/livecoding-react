@@ -1,5 +1,5 @@
 import { useState, Fragment } from "react";
-import Button from "./Button";
+import Button from "./Button/Button";
 
 function Soup({ hideButtons, title, description, ingredients }) {
   const [counter, setCounter] = useState(1);
