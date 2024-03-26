@@ -36,8 +36,9 @@ function App() {
 
   return (
     <>
-      {/* <Button2>Test</Button2> */}
-      <BasicRating stars={5} />
+      <h1 className="text-3xl font-bold underline text-fuchsia-700 bg-slate-200">
+        Hello world!
+      </h1>
       {/* <Button color="green" onClick={() => setHideButtons((prev) => !prev)}>
         {hideButtons ? "Pokaż" : "Ukryj"} przyciski akcji
       </Button>
