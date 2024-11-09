@@ -2,9 +2,11 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-const ingredientSchema = z.object({
-  id: z.string(),
-  amount: z.string(),
+// import { useState } from "react";
+
+const ingredientsSchema = z.object({
+  id: z.number(),
+  amount: z.number(),
   name: z.string(),
 });
 
@@ -12,16 +14,16 @@ const soupSchema = z.object({
   id: z.number(),
   title: z.string().min(1, { message: "Required" }),
   description: z.string().min(10, { message: "Too short" }),
-  ingredients: z.array(ingredientSchema),
+  ingredients: z.array(ingredientsSchema),
 });
 
-const initialIngredient = { name: "", amount: "1", id: "" };
+const initialIngredients = { name: "", amount: 1, id: "" };
 
 function FormComponent({ addRecipe, recipesAmount }) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isValid },
     setValue,
     control,
     watch,
@@ -30,25 +32,39 @@ function FormComponent({ addRecipe, recipesAmount }) {
     defaultValues: {
       id: recipesAmount + 1,
       title: "Pomidorowa",
-      description: "pyszna zupa",
-      ingredients: [initialIngredient],
+      description: "Pyszna zupa",
+      ingredients: [initialIngredients],
     },
   });
 
   const { fields, append } = useFieldArray({ name: "ingredients", control });
 
   console.log("errors", errors);
-  console.log(watch("title"));
+  console.log(watch());
+  // const [title, setTitle] = useState("Pomidorowa");
+  // const [description, setDescription] = useState("");
+  // const titleRef = useRef(null);
   const onSubmit = (data) => {
     console.log("data", data);
-
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(true);
         addRecipe(data);
       }, 2 * 1000);
     });
+    // console.log("title", title);
+    // console.log("description", description);
+    // const formData = new FormData(event.target);
+    // event.preventDefault();
+    // console.log(formData.get('title'))
+    // console.log(titleRef.current.value);
   };
+
+  // const onTitleChangeHandler = (event) => {
+  //   setTitle(event.target.value);
+  // };
+
+  // console.log("title", title);
 
   return (
     <div>
@@ -59,10 +75,13 @@ function FormComponent({ addRecipe, recipesAmount }) {
           </div>
           <input
             {...register("title")}
-            id="title"
-            name="title"
+            // value={title}
+            // ref={titleRef}
             type="text"
+            name="title"
+            id="title"
             placeholder="Tytuł"
+            // onChange={onTitleChangeHandler}
           />
           {errors?.title && <p>{errors.title.message}</p>}
         </div>
@@ -74,15 +93,14 @@ function FormComponent({ addRecipe, recipesAmount }) {
             {...register("description")}
             id="description"
             name="description"
+            // value={description}
             placeholder="Opis"
             rows={4}
+            // onChange={(event) => setDescription(event.target.value)}
           />
         </div>
         <div>
-          <button type="button" onClick={() => append(initialIngredient)}>
-            Dodaj składnik
-          </button>
-          {fields.map(({ id }, index) => {
+        {fields.map(({ id }, index) => {
             setValue(`ingredients.${index}.id`, id);
             return (
               <div key={id}>
@@ -106,7 +124,7 @@ function FormComponent({ addRecipe, recipesAmount }) {
             );
           })}
         </div>
-        <button disabled={isSubmitting} type="submit">
+        <button disabled={!isValid || isSubmitting} type="submit">
           {isSubmitting ? "..." : "Wyślij"}
         </button>
       </form>

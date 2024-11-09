@@ -1,7 +1,7 @@
 import { useState, Fragment } from "react";
 import Button from "./Button";
 
-function Soup({ hideButtons, title, description, recipe }) {
+function Soup({ hideButtons, title, description, ingredients }) {
   const [counter, setCounter] = useState(1);
   const [showIngredients, setShowIngredients] = useState(false);
 
@@ -20,7 +20,7 @@ function Soup({ hideButtons, title, description, recipe }) {
     <div className="recipe-card">
       <h2>{title}</h2>
       <p>{description}</p>
-      {recipe && (
+      {ingredients && (
         <>
           {!hideButtons && (
             <Fragment>
@@ -34,15 +34,11 @@ function Soup({ hideButtons, title, description, recipe }) {
           <p>Portions: {counter}</p>
           {showIngredients && (
             <ul>
-              <li>
-                {1 * counter} {recipe.one}
-              </li>
-              <li>
-                {5 * counter} {recipe.two}
-              </li>
-              <li>
-                {1 * counter} {recipe.three}
-              </li>
+              {ingredients.map(({ amount, name, id }) => (
+                <li key={id}>
+                  {amount * counter} {name}
+                </li>
+              ))}
             </ul>
           )}
         </>
